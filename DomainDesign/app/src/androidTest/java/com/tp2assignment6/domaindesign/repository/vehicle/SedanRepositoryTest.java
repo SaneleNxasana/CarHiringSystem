@@ -30,8 +30,8 @@ public class SedanRepositoryTest extends AndroidTestCase {
         Assert.assertNotNull(TAG + " CREATE", insertEntity);
 
         //READ ALL
-        Set<Sedan> suv = repo.readAll();
-        Assert.assertTrue(TAG + " READ ALL", suv.size() > 0);
+        Set<Sedan> seden = repo.readAll();
+        Assert.assertTrue(TAG + " READ ALL", seden.size() > 0);
 
         //READ ITEM
         Sedan item = repo.readById(idNumber);
@@ -40,8 +40,13 @@ public class SedanRepositoryTest extends AndroidTestCase {
         //UPDATE ITEM
         Sedan updateItem = new Sedan.Builder()
                 .copy(item)
-                .registrationNumber("CA 7946")
+                .registrationNumber("CA 9572")
                 .build();
+        repo.update(updateItem);
+        Sedan newItem = repo.readById(idNumber);
+        Assert.assertEquals(TAG + " UPDATE ITEM", "CA 9572", newItem.getRegistrationNumber());
+
+        //DELETE ITEM
         repo.delete(updateItem);
         Sedan deleteItem = repo.readById(idNumber);
         Assert.assertNull(TAG + " DELETE", deleteItem);

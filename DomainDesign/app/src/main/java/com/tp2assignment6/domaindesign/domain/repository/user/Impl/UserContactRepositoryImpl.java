@@ -25,15 +25,13 @@ public class UserContactRepositoryImpl extends SQLiteOpenHelper implements UserC
     public static final String COLUMN_ID = "idNumber";
     public static final String COLUMN_CONTACTTYPE = "contactType";
     public static final String COLUMN_CONTSCTVALUE = "contactValue";
-    public static final String COLUMN_CONTACTSTATUS = "contactStatus";
 
     //Database creation!
     private static final String DATABASE_CREATE = " CREATE TABLE "
             + TABLE_NAME + "("
             + COLUMN_ID + " INTEGER  PRIMARY KEY AUTOINCREMENT, "
             + COLUMN_CONTACTTYPE + " TEXT NOT NULL, "
-            + COLUMN_CONTSCTVALUE + " TEXT UNIQUE NOT NULL, "
-            + COLUMN_CONTACTSTATUS + " TEXT NOT NULL );";
+            + COLUMN_CONTSCTVALUE + " TEXT UNIQUE NOT NULL, );";
 
     public UserContactRepositoryImpl(Context context){
         super(context, DBConstants.DATABASE_NAME, null, DBConstants.DATABASE_VERSION);
@@ -50,7 +48,6 @@ public class UserContactRepositoryImpl extends SQLiteOpenHelper implements UserC
         values.put(COLUMN_ID, entity.getIdNumber());
         values.put(COLUMN_CONTACTTYPE, entity.getContactType());
         values.put(COLUMN_CONTSCTVALUE, entity.getContactValue());
-        values.put(COLUMN_CONTACTSTATUS, entity.getContactStatus());
         long idNumber = db.insertOrThrow(TABLE_NAME, null, values);
         UserContact insertEntity = new UserContact.Builder()
                 .copy(entity)
@@ -67,8 +64,7 @@ public class UserContactRepositoryImpl extends SQLiteOpenHelper implements UserC
                 new String[]{
                         COLUMN_ID,
                         COLUMN_CONTACTTYPE,
-                        COLUMN_CONTSCTVALUE,
-                        COLUMN_CONTACTSTATUS},
+                        COLUMN_CONTSCTVALUE,},
                 COLUMN_ID + " =? ",
                 new String[]{String.valueOf(id)},
                 null, null, null);
@@ -78,7 +74,6 @@ public class UserContactRepositoryImpl extends SQLiteOpenHelper implements UserC
                     .idNumber(cursor.getLong(cursor.getColumnIndex(COLUMN_ID)))
                     .contactType(cursor.getString(cursor.getColumnIndex(COLUMN_CONTACTTYPE)))
                     .contactValue(cursor.getString(cursor.getColumnIndex(COLUMN_CONTSCTVALUE)))
-                    .contactStatus(cursor.getString(cursor.getColumnIndex(COLUMN_CONTACTSTATUS)))
                     .build();
             return UserContact;
         }
@@ -100,7 +95,6 @@ public class UserContactRepositoryImpl extends SQLiteOpenHelper implements UserC
                         .idNumber(cursor.getLong(cursor.getColumnIndex(COLUMN_ID)))
                         .contactType(cursor.getString(cursor.getColumnIndex(COLUMN_CONTACTTYPE)))
                         .contactValue(cursor.getString(cursor.getColumnIndex(COLUMN_CONTSCTVALUE)))
-                        .contactStatus(cursor.getString(cursor.getColumnIndex(COLUMN_CONTACTSTATUS)))
                         .build();
                 UserContact.add(setting);
             }while (cursor.moveToNext());
@@ -115,7 +109,6 @@ public class UserContactRepositoryImpl extends SQLiteOpenHelper implements UserC
         values.put(COLUMN_ID, entity.getIdNumber());
         values.put(COLUMN_CONTACTTYPE, entity.getContactType());
         values.put(COLUMN_CONTSCTVALUE, entity.getContactValue());
-        values.put(COLUMN_CONTACTSTATUS, entity.getContactStatus());
         db.update(
                 TABLE_NAME,
                 values,

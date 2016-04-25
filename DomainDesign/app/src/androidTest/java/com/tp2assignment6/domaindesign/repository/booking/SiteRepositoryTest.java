@@ -31,8 +31,8 @@ public class SiteRepositoryTest extends AndroidTestCase{
         Assert.assertNotNull(TAG + " CREATE");
 
         //READ ALL
-        Set<Site> site = repo.readAll();
-        Assert.assertTrue(TAG + " READ ALL", site.size() > 0);
+        Set<Site> sites = repo.readAll();
+        Assert.assertTrue(TAG + " READ ALL", sites.size() > 0);
 
         //READ ITEM
         Site item = repo.readById(idNumber);
@@ -45,7 +45,7 @@ public class SiteRepositoryTest extends AndroidTestCase{
                 .build();
         repo.update(updateItem);
         Site newItem = repo.readById(idNumber);
-        Assert.assertEquals(TAG + " UPDATE ITEM", newItem.getReservationUrl());
+        Assert.assertEquals(TAG + " UPDATE ITEM", "www.carhire.com/reservation/005", newItem.getReservationUrl());
 
         //DELETE ITEM
         repo.delete(updateItem);

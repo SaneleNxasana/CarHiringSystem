@@ -9,7 +9,6 @@ public class UserContact implements Serializable {
     private Long idNumber;
     private String contactType;
     private String contactValue;
-    private String contactStatus;
 
     public UserContact() {
     }
@@ -26,22 +25,16 @@ public class UserContact implements Serializable {
         return contactValue;
     }
 
-    public String getContactStatus() {
-        return contactStatus;
-    }
-
     public UserContact(Builder builder){
         this.idNumber = builder.idNumber;
         this.contactType = builder.contactType;
         this.contactValue = builder.contactValue;
-        this.contactStatus = builder.contactStatus;
     }
 
     public static class Builder{
         private Long idNumber;
         private String contactType;
         private String contactValue;
-        private String contactStatus;
 
         public Builder idNumber(Long value){
             this.idNumber = value;
@@ -58,16 +51,10 @@ public class UserContact implements Serializable {
             return this;
         }
 
-        public Builder contactStatus(String value){
-            this.contactStatus = value;
-            return this;
-        }
-
         public Builder copy(UserContact value){
             this.idNumber = value.idNumber;
             this.contactType = value.contactType;
             this.contactValue = value.contactValue;
-            this.contactStatus = value.contactStatus;
             return this;
         }
 

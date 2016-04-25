@@ -30,8 +30,8 @@ public class PaymentRepositoryTest extends AndroidTestCase {
         Assert.assertNotNull(TAG + " CREATE", insertEntity);
 
         //READ ALL
-        Set<Payment> payment = repo.readAll();
-        Assert.assertTrue(TAG + " READ ALL", payment.size() > 0);
+        Set<Payment> payments = repo.readAll();
+        Assert.assertTrue(TAG + " READ ALL", payments.size() > 0);
 
         //READ ITEM
         Payment item = repo.readById(idNumber);

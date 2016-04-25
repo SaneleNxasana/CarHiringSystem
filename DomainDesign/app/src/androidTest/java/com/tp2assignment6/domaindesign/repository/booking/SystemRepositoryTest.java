@@ -30,8 +30,8 @@ public class SystemRepositoryTest extends AndroidTestCase {
         Assert.assertNotNull(TAG + " CREATE", insertEntity);
 
         //READ ALL
-        Set<System> system = repo.readAll();
-        Assert.assertTrue(TAG + " READ ALL", system.size() > 0);
+        Set<System> systems = repo.readAll();
+        Assert.assertTrue(TAG + " READ ALL", systems.size() > 0);
 
         //READ ITEM
         System item = repo.readById(idNumber);

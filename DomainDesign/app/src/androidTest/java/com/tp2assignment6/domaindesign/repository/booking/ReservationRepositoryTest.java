@@ -30,8 +30,8 @@ public class ReservationRepositoryTest extends AndroidTestCase {
         Assert.assertNotNull(TAG + " CREATE", insertEntity);
 
         //READ ALL
-        Set<Reservation> reservation = repo.readAll();
-        Assert.assertTrue(TAG + " READ ALL", reservation.size() > 0);
+        Set<Reservation> reservations = repo.readAll();
+        Assert.assertTrue(TAG + " READ ALL", reservations.size() > 0);
 
         //READ ITEM
         Reservation item = repo.readById(idNumber);
@@ -44,7 +44,7 @@ public class ReservationRepositoryTest extends AndroidTestCase {
                 .build();
         repo.update(updateItem);
         Reservation newItem = repo.readById(idNumber);
-        Assert.assertEquals(TAG + " UPDATE ITEM", newItem.getDuration());
+        Assert.assertEquals(TAG + " UPDATE ITEM", "5", newItem.getDuration());
 
         //DELETE ITEM
         repo.delete(updateItem);

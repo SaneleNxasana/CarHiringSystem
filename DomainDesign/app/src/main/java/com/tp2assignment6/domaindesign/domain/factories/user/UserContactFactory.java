@@ -10,7 +10,6 @@ public class UserContactFactory {
         return new UserContact.Builder()
                 .contactType(contact)
                 .contactValue(value)
-          //      .contactStatus(DomainState.ACTIVE.name())
                 .build();
     }
 }

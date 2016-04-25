@@ -31,8 +31,8 @@ public class VehicleRepositoryTest extends AndroidTestCase {
         Assert.assertNotNull(TAG + " CREATE", insertEntity);
 
         //READ ALL
-        Set<Vehicle> vehicle = repo.readAll();
-        Assert.assertTrue(TAG + " READ ALL", vehicle.size() > 0);
+        Set<Vehicle> vehicles = repo.readAll();
+        Assert.assertTrue(TAG + " READ ALL", vehicles.size() > 0);
 
         //READ ITEM
         Vehicle item = repo.readById(idNumber);

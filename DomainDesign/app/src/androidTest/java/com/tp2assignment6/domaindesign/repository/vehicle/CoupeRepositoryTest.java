@@ -30,8 +30,8 @@ public class CoupeRepositoryTest extends AndroidTestCase {
         Assert.assertNotNull(TAG + " CREATE", insertEntity);
 
         //READ ALL
-        Set<Coupe> suv = repo.readAll();
-        Assert.assertTrue(TAG + " READ ALL", suv.size() > 0);
+        Set<Coupe> coupes = repo.readAll();
+        Assert.assertTrue(TAG + " READ ALL", coupes.size() > 0);
 
         //READ ITEM
         Coupe item = repo.readById(idNumber);
@@ -42,6 +42,11 @@ public class CoupeRepositoryTest extends AndroidTestCase {
                 .copy(item)
                 .registrationNumber("CA 7423")
                 .build();
+        repo.update(updateItem);
+        Coupe newItem = repo.readById(idNumber);
+        Assert.assertEquals(TAG + " UPDATE ITEM", "CA 7423", newItem.getRegistrationNumber());
+
+        //DELETE ITEM
         repo.delete(updateItem);
         Coupe deleteItem = repo.readById(idNumber);
         Assert.assertNull(TAG + " DELETE", deleteItem);

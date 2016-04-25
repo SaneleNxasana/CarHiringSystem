@@ -30,8 +30,8 @@ public class MinibusRepositoryTest extends AndroidTestCase {
         Assert.assertNotNull(TAG + " CREATE", insertEntity);
 
         //READ ALL
-        Set<Minibus> suv = repo.readAll();
-        Assert.assertTrue(TAG + " READ ALL", suv.size() > 0);
+        Set<Minibus> minibuses = repo.readAll();
+        Assert.assertTrue(TAG + " READ ALL", minibuses.size() > 0);
 
         //READ ITEM
         Minibus item = repo.readById(idNumber);
@@ -40,8 +40,13 @@ public class MinibusRepositoryTest extends AndroidTestCase {
         //UPDATE ITEM
         Minibus updateItem = new Minibus.Builder()
                 .copy(item)
-                .registrationNumber("CA 9173")
+                .registrationNumber("CA 2023")
                 .build();
+        repo.update(updateItem);
+        Minibus newItem = repo.readById(idNumber);
+        Assert.assertEquals(TAG + " UPDATE ITEM", "CA 2023", newItem.getRegistrationNumber());
+
+        //DELETE ITEM
         repo.delete(updateItem);
         Minibus deleteItem = repo.readById(idNumber);
         Assert.assertNull(TAG + " DELETE", deleteItem);
